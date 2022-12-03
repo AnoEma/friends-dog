@@ -21,6 +21,7 @@ namespace Application.services
             catch (Exception ex)
             {
                 _logger.LogError($"Ocorreu erro no processo {ex.Message}");
+                throw;
             }
         }
     }
