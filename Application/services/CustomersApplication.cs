@@ -16,7 +16,7 @@ namespace Application.services
         {
             try
             {
-                throw new NotImplementedException();
+                return Task.CompletedTask;
             }
             catch (Exception ex)
             {

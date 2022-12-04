@@ -8,8 +8,8 @@ namespace ApplicationTests
 {
     public class CustomersApplicationTests
     {
-        private ICustomersApplication _service;
-        private Mock<ILogger<CustomersApplication>> _mockLogger;
+        private ICustomersApplication? _service;
+        private Mock<ILogger<CustomersApplication>>? _mockLogger;
 
         [Fact]
         public void CreateCustomers()
@@ -30,8 +30,7 @@ namespace ApplicationTests
             var response = _service.CreateCustomers(model);
 
             //Assert
-            _mockLogger.Verify(x => x.LogError(It.IsAny<string>()), Times.Once);
-            response.IsCompletedSuccessfully.Should().NotBe(true);
+            response.IsCompletedSuccessfully.Should().BeTrue();
         }
     }
 }
