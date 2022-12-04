@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Domain.Entity;
+using Microsoft.Extensions.Logging;
 
 namespace Application.services
 {
@@ -9,6 +10,22 @@ namespace Application.services
         public SolicitationApplication(ILogger<SolicitationApplication> logger)
         {
             _logger = logger;
+        }
+
+        public Dictionary<string, object> CreateSolicitation(Solicitation solicitation)
+        {
+            try
+            {
+                return new Dictionary<string, object>()
+                {
+
+                };
+            }
+            catch (Exception)
+            {
+                _logger.LogError("");
+                throw;
+            }
         }
     }
 }
