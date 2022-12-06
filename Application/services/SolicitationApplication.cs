@@ -12,18 +12,20 @@ namespace Application.services
             _logger = logger;
         }
 
-        public Dictionary<string, object> CreateSolicitation(Solicitation solicitation)
+        public int CreateSolicitation(Solicitation solicitation)
         {
             try
             {
-                return new Dictionary<string, object>()
+                if(solicitation == null)
                 {
+                    throw new ArgumentNullException(nameof(solicitation));
+                }
 
-                };
+                return 0;
             }
             catch (Exception)
             {
-                _logger.LogError("");
+                _logger.LogError("[SolicitationApplication CreateSolicitation] Ocorrei erro ao agendar a solicitação");
                 throw;
             }
         }
