@@ -16,7 +16,7 @@ namespace Application.services
         {
             try
             {
-
+                _logger.LogInformation("");
                 return Task.CompletedTask;
             }
             catch (Exception ex)

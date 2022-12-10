@@ -8,5 +8,6 @@
         public int Weight { get; set; }
         public int Ages { get; set; }
         public Scheduling? Scheduling { get; set; }
+        public Guid CustomerId { get; set; }
     }
 }

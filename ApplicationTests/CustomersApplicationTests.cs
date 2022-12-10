@@ -2,14 +2,13 @@ using Application.services;
 using Domain.Entity;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
-using Moq;
+using NSubstitute;
 
 namespace ApplicationTests
 {
     public class CustomersApplicationTests
     {
         private ICustomersApplication? _service;
-        private Mock<ILogger<CustomersApplication>>? _mockLogger;
 
         [Fact]
         public void CreateCustomers()
@@ -23,14 +22,16 @@ namespace ApplicationTests
                 Email = "friendsDog@gmail.com",
                 Phone = "11977228269"
             };
-            _mockLogger = new Mock<ILogger<CustomersApplication>>();
-            _service = new CustomersApplication(_mockLogger.Object);
+
+            var _mockLogger = Substitute.For<ILogger<CustomersApplication>>();
+            _service = new CustomersApplication(_mockLogger);
 
             //Act
             var response = _service.CreateCustomers(model);
 
             //Assert
             response.IsCompletedSuccessfully.Should().BeTrue();
+            _mockLogger.Received().LogInformation("");
         }
     }
 }
