@@ -2,20 +2,19 @@
 using Infra.Interface;
 using Microsoft.Extensions.Logging;
 
-namespace Infra.Repository
+namespace Infra.Repository;
+
+public class SolicitationRepository : ISolicitationRepository
 {
-    public class SolicitationRepository : ISolicitationRepository
+    private readonly ILogger<SolicitationRepository> _logger;
+
+    public SolicitationRepository(ILogger<SolicitationRepository> logger)
     {
-        private readonly ILogger<SolicitationRepository> _logger;
+        _logger = logger;
+    }
 
-        public SolicitationRepository(ILogger<SolicitationRepository> logger)
-        {
-            _logger = logger;
-        }
-
-        public int Create(Solicitation solicitation)
-        {
-            throw new NotImplementedException();
-        }
+    public int Create(Solicitation solicitation)
+    {
+        throw new NotImplementedException();
     }
 }

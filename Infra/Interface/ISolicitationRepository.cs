@@ -1,9 +1,8 @@
 ﻿using Domain.Entity;
 
-namespace Infra.Interface
+namespace Infra.Interface;
+
+public interface ISolicitationRepository
 {
-    public interface ISolicitationRepository
-    {
-        int Create(Solicitation solicitation);
-    }
+    int Create(Solicitation solicitation);
 }

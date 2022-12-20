@@ -1,9 +1,8 @@
 ﻿using Domain.Entity;
 
-namespace Application.services
+namespace Application.services;
+
+public interface ICustomersApplication
 {
-    public interface ICustomersApplication
-    {
-        Guid CreateCustomers(Customers customers); 
-    }
+    Guid CreateCustomers(Customers customers); 
 }

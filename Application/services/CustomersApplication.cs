@@ -1,38 +1,39 @@
 ﻿using Domain.Entity;
 using Infra.Interface;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks.Sources;
 
-namespace Application.services
+namespace Application.services;
+
+public class CustomersApplication : ICustomersApplication
 {
-    public class CustomersApplication : ICustomersApplication
+    private readonly ILogger<CustomersApplication> _logger;
+    private readonly ICustomersRepository _customersRepository;
+
+    public CustomersApplication(
+        ILogger<CustomersApplication> logger, 
+        ICustomersRepository customersRepository
+        )
     {
-        private readonly ILogger<CustomersApplication> _logger;
-        private readonly ICustomersRepository _customersRepository;
+        _logger = logger;
+        _customersRepository = customersRepository;
+    }
 
-        public CustomersApplication(ILogger<CustomersApplication> logger, ICustomersRepository customersRepository)
+    public Guid CreateCustomers(Customers customers)
+    {
+        try
         {
-            _logger = logger;
-            _customersRepository = customersRepository;
+            if (customers is null)
+            {
+                throw new InvalidOperationException();
+            }
+            _logger.LogInformation("Realização de TDD...");
+
+            return _customersRepository.Create(customers);
         }
-
-        public Guid CreateCustomers(Customers customers)
+        catch (Exception ex)
         {
-            try
-            {
-                if (customers == null)
-                {
-                    throw new InvalidOperationException();
-                }
-                _logger.LogInformation("Realização de TDD...");
-
-                return _customersRepository.Create(customers);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Ocorreu erro no processo {ex.Message}");
-                throw;
-            }
+            _logger.LogError($"Ocorreu erro no processo {ex.Message}");
+            throw;
         }
     }
 }
