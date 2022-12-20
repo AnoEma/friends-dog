@@ -4,6 +4,6 @@ namespace Application.services
 {
     public interface ICustomersApplication
     {
-        Task CreateCustomers(Customers customers); 
+        Guid CreateCustomers(Customers customers); 
     }
 }

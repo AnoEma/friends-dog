@@ -1,6 +1,7 @@
 using Application.services;
 using Domain.Entity;
 using FluentAssertions;
+using Infra.Interface;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 
@@ -14,24 +15,27 @@ namespace ApplicationTests
         public void CreateCustomers()
         {
             //Assert
+            var id = Guid.NewGuid();
             var model = new Customers
             {
-                Id = Guid.NewGuid(),
                 FirstName = "Friends",
                 LastName = "Dog",
                 Email = "friendsDog@gmail.com",
                 Phone = "11977228269"
             };
 
-            var _mockLogger = Substitute.For<ILogger<CustomersApplication>>();
-            _service = new CustomersApplication(_mockLogger);
+            var mockLogger = Substitute.For<ILogger<CustomersApplication>>();
+            var repository = Substitute.For<ICustomersRepository>();
+            repository.Create(Arg.Any<Customers>()).Returns(id);
+
+            _service = new CustomersApplication(mockLogger, repository);
 
             //Act
             var response = _service.CreateCustomers(model);
 
             //Assert
-            response.IsCompletedSuccessfully.Should().BeTrue();
-            _mockLogger.Received().LogInformation("");
+            mockLogger.Received().LogInformation("Realização de TDD...");
+            response.Should().Be(id);
         }
     }
 }
