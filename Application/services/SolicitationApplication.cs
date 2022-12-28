@@ -1,4 +1,5 @@
 ﻿using Domain.Entity;
+using Infra.Interface;
 using Microsoft.Extensions.Logging;
 
 namespace Application.services
@@ -6,22 +7,27 @@ namespace Application.services
     public class SolicitationApplication : ISolicitationApplication
     {
         private readonly ILogger<SolicitationApplication> _logger;
+        private readonly ISolicitationRepository _repository;
 
-        public SolicitationApplication(ILogger<SolicitationApplication> logger)
+        public SolicitationApplication(
+            ILogger<SolicitationApplication> logger, 
+            ISolicitationRepository repository
+            )
         {
             _logger = logger;
+            _repository = repository;
         }
 
         public int CreateSolicitation(Solicitation solicitation)
         {
             try
             {
-                if(solicitation == null)
+                if(solicitation is null)
                 {
                     throw new ArgumentNullException(nameof(solicitation));
                 }
 
-                return 0;
+                return _repository.Create(solicitation);
             }
             catch (Exception)
             {

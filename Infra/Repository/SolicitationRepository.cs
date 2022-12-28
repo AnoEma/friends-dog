@@ -15,6 +15,6 @@ public class SolicitationRepository : ISolicitationRepository
 
     public int Create(Solicitation solicitation)
     {
-        throw new NotImplementedException();
+        return 0;
     }
 }
