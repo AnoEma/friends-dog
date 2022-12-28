@@ -1,4 +1,7 @@
-﻿namespace Api.Endpoints;
+﻿using Application.services;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Api.Endpoints;
 
 public static class CustomerEndpointConfig
 {
@@ -7,6 +10,11 @@ public static class CustomerEndpointConfig
         app.MapGet("customer", () =>
         {
             return "ok";
+        });
+
+        app.MapPost("customer",  async ([FromServices] ICustomersApplication service) =>
+        {
+            return "Ok";
         });
     }
 }

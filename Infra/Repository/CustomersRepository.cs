@@ -8,6 +8,7 @@ public class CustomersRepository : ICustomersRepository
 
     public Guid Create(Customers customers)
     {
-        throw new NotImplementedException();
+        customers.Id = Guid.NewGuid();
+        return customers.Id;
     }
 }
