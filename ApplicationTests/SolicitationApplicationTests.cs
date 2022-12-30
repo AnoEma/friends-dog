@@ -1,19 +1,19 @@
 ﻿using Application.services;
+using Infra.Interface;
 using Microsoft.Extensions.Logging;
-using Moq;
+using NSubstitute;
 
-namespace ApplicationTests
+namespace ApplicationTests;
+
+public class SolicitationApplicationTests
 {
-    public class SolicitationApplicationTests
-    {
-        private ISolicitationApplication? _service;
-        private Mock<ILogger<SolicitationApplication>>? _mockLogger;
+    private ISolicitationApplication? _service;
 
-        [Fact]
-        public void CreateSolicitation()
-        {
-            _mockLogger = new Mock<ILogger<SolicitationApplication>>();
-            _service = new SolicitationApplication(_mockLogger.Object);
-        }
+    [Fact]
+    public void CreateSolicitation()
+    {
+        var _mockLogger = Substitute.For<ILogger<SolicitationApplication>>();
+        var _repository = Substitute.For<ISolicitationRepository>();
+        _service = new SolicitationApplication(_mockLogger, _repository);
     }
 }
