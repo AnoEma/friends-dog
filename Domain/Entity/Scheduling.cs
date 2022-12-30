@@ -1,12 +1,11 @@
-﻿namespace Domain.Entity
+﻿namespace Domain.Entity;
+
+public class Scheduling
 {
-    public class Scheduling
-    {
-        public DateTime appointment { get; set; }
-        public string outsideaddress { get; set; } = string.Empty;
-        public string entryaddress { get; set; } = string.Empty;
-        public string zipcodeoutsideaddress { get; set; } = string.Empty;
-        public string zipcodeentryaddress { get; set; } = string.Empty;
-        public float distance { get; set; }
-    }
+    public DateTime appointment { get; set; }
+    public string outsideaddress { get; set; }
+    public string entryaddress { get; set; }
+    public string zipcodeoutsideaddress { get; set; }
+    public string zipcodeentryaddress { get; set; }
+    public float distance { get; set; }
 }
