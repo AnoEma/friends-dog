@@ -1,6 +1,8 @@
-﻿namespace Infra.BaseRepository
+﻿namespace Infra.BaseRepository;
+
+public interface IRepositoryBase<T> where T : class
 {
-    public interface IRepositoryBase
-    {
-    }
+    Task<IList<T>> GetAllAsync();
+    Task CreateAsync(T model);
+
 }
