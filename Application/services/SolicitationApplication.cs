@@ -27,7 +27,8 @@ namespace Application.services
                     throw new ArgumentNullException(nameof(solicitation));
                 }
 
-                return _repository.Create(solicitation);
+                var test = _repository.Create(solicitation);
+                return 0;
             }
             catch (Exception)
             {
