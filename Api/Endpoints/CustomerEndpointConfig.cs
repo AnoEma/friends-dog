@@ -18,5 +18,11 @@ public static class CustomerEndpointConfig
                 service.CreateCustomers(command).ToString(),
                 contentType: "application/json");
         });
+
+        app.MapGet("customer", () => {
+            return Results.Text(
+                "Ok",
+                contentType: "application/json");
+        });
     }
 }
